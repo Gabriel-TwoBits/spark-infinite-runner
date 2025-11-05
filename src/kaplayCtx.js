@@ -17,4 +17,24 @@ const k = kaplay({
   debug: true,
 });
 
+export const translations = {
+    "game-title": {
+        en: "SELECT YOUR LANGUAGE",
+        pt: "SELECIONE SEU IDIOMA",
+    },
+    "game-over": {
+      en: "GAME OVER",
+      pt: "FIM DE JOGO",
+    },
+    "start-button":{
+      en: "START",
+      pt: "COMEÇAR",
+    },
+    "space-to-start":{
+      en: "Press space/Click/Mouse to start",
+      pt: "Pressione Espaço/Clique/Mouse para começar"
+    },
+    // Add all other game texts here
+};
+
 export default k;

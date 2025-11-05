@@ -13,7 +13,9 @@ export default function spawnSpark(pos){
         k.anchor("center"),
         k.pos(pos),
         k.body({jumpForce: 2000}),
+        "player",
         {
+            isAttacking: false,
             ringCollectUI: null,
             setControls(){
                 k.onButtonPress("jump", () => {
@@ -22,12 +24,17 @@ export default function spawnSpark(pos){
                         this.play("jump");
                         this.jump();
                         k.play("jump", {volume: 0.5});
+                    }else{
+                        this.isAttacking = true;
+                        k.wait(0.5, () => this.isAttacking = false);
+                        this.use(k.sprite("spark_attack"));
+                        this.play("attack");
                     };
                 });
             },
             setEvents(){
                 this.onGround(() => {
-                    if(gameSpeed < 1000){
+                    if(gameSpeed < 1500){
                         this.use(k.sprite("spark_walk"));
                         this.play("walk");
                     }else{
@@ -44,7 +51,6 @@ export default function spawnSpark(pos){
         k.color(255, 185, 100),
         k.anchor("center"),
         k.pos(30, -10),
-        k.animate(),
     ]);
 
     return spark;

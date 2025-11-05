@@ -3,8 +3,13 @@ import spawnSpark from "../entities/spark";
 import {spawnMotoBug} from "../entities/motobug";
 import spawnRing from "../entities/ring";
 
-export default function game(){
+export default function game(isPlaying){
     k.setGravity(4000);
+
+    let stage
+    if (!isPlaying) {
+        stage = k.play("stage", {volume: 0.2, loop: true});
+    };
 
     const bgPieceWidth = 1920;
     const bgPieces = [
@@ -50,12 +55,12 @@ export default function game(){
     spark.setControls();
     spark.setEvents();
     spark.onCollide("enemy", (enemy) => {
-        if (!spark.isGrounded()){
+        if (!spark.isGrounded() && spark.isAttacking){
             k.play("destroy", {volume: 0.5});
             k.play ("hyper-ring", {volume: 0.5});
             k.destroy(enemy);
 
-            spark.play("jump");
+            //spark.play("jump");
             spark.jump();
 
             scoreMultiplier++;
@@ -64,14 +69,12 @@ export default function game(){
 
             if(scoreMultiplier === 1){
                 spark.ringCollectUI.text = "+10";
-                spark.ringCollectUI.animate("pos", [k.vec2(30, -10), k.vec2(30, -30)], {duration: 3});
             }
             else{
                 spark.ringCollectUI.text = `x${scoreMultiplier}`;
-                spark.ringCollectUI.animate("pos", [k.vec2(30, -10), k.vec2(30, -30)], {duration: 3});
             }
             
-            k.wait(2, () => spark.ringCollectUI.text = "");
+            k.wait(1, () => spark.ringCollectUI.text = "");
 
             return;
         };
@@ -88,8 +91,7 @@ export default function game(){
         scoreText.text = `SCORE: ${score}`;
 
         spark.ringCollectUI.text = "+1";
-        k.wait(2, () => spark.ringCollectUI.text = "");
-        spark.ringCollectUI.animate("pos", [k.vec2(30, -10), k.vec2(30, -30)], {duration: 3});
+        k.wait(1, () => spark.ringCollectUI.text = "");
         return;
     });
 

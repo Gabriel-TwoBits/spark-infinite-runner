@@ -2,6 +2,7 @@ import k from "./kaplayCtx.js";
 import mainMenu from "./scenes/mainMenu.js";
 import game from "./scenes/game.js";
 import gameOver from "./scenes/game-over.js";
+import languageMenu from "./scenes/language-menu.js";
 
 k.loadSprite("chemical-bg", "graphics/chemical-bg.png");
 k.loadSprite("platforms", "graphics/platforms.png");
@@ -30,6 +31,15 @@ k.loadSprite("spark_jump", "graphics/spark_jump.png", {
   anims: {
     jump:{
       from: 0, to: 5, loop: false, speed: 10 
+    },
+  },
+});
+
+k.loadSprite("spark_attack", "graphics/spark_attack.png", {
+  sliceX: 9,
+  anims: {
+    attack:{
+      from: 0, to: 8, loop: false, speed: 50
     },
   },
 });
@@ -72,11 +82,11 @@ k.loadSound("hyper-ring", "sounds/HyperRing.wav");
 k.loadSound("jump", "sounds/Jump.wav");
 k.loadSound("ring", "sounds/Ring.wav");
 k.loadSound("city", "sounds/city.mp3");
+k.loadSound("stage", "sounds/Flower_Mountain_City.wav")
 
+k.scene("language-menu", languageMenu);
 k.scene("main-menu", mainMenu);
-
 k.scene("game", game);
-
 k.scene("game-over", gameOver);
 
-k.go("main-menu");
+k.go("language-menu");

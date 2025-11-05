@@ -1,5 +1,6 @@
 import k from "../kaplayCtx.js";
 import spawnSpark from "../entities/spark.js";
+import { T } from "./language-menu.js";
 
 export default function mainMenu(){
     if (!k.getData("best-score")) k.setData("best-score", 0);
@@ -37,14 +38,17 @@ export default function mainMenu(){
 
     const mainText = k.add([
         k.text("SPARK THE INFINITE RUNNER JESTER", {font: "mania", size: 96, outline: 10}),
-        k.pos(k.center().x, 450),
+        k.pos(k.center().x, 250),
         k.anchor("center"),
+        k.outline(20, k.rgb(0, 0, 0)),
     ]);
-    
+
     const pressStart = k.add([
-        k.text("Press space to start", {font: "mania", size: 60}),
-        k.pos(k.center().x, 550),
+        k.text(T("space-to-start"), {font: "mania", size: 50}),
+        k.pos(k.center().x, 350),
         k.anchor("center"),
+        "localized",
+        { translationKey: "space-to-start" },
     ])
     
     spawnSpark(k.vec2(k.center().x, 750));
