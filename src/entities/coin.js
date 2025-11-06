@@ -1,6 +1,6 @@
 import k from "../kaplayCtx";
 
-export default function spawnRing(pos){
+export default function spawnCoin(pos){
     return k.add([
         k.sprite("ring", {anim: "spin"}),
         k.area(),

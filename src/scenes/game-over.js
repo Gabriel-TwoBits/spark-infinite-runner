@@ -5,7 +5,7 @@ export default function gameOver(){
     let bestScore = k.getData("best-score");
     const currentScore = k.getData("current-score");
 
-    const rankGrades = ["F", "E", "D", "C", "B", "A", "S"];
+    const rankGrades = ["RANK F", "RANK E", "RANK D", "RANK C", "RANK B", "RANK A", "RANK S"];
     const rankValues = [50, 80, 100, 200, 300, 400, 500];
 
     let currentRank = "F";
@@ -23,21 +23,53 @@ export default function gameOver(){
     }
 
     k.add([
+        k.sprite("spark-art", {flipX: true}),
+        k.pos(200, 720),
+        k.anchor("center"),
+        k.scale(2),
+        k.z(1),
+    ])
+
+    k.onDraw(() => {
+        k.drawSprite({
+            sprite: "boss-bg",
+            pos: k.vec2(0, 0),
+            z: -2,
+        })
+    })
+
+    k.add([
         k.text(T("game-over"), {font: "mania", size: 100}),
         k.anchor("center"),
-        k.pos(k.center().x, 200),
+        k.pos(k.center().x, 150),
         "localized",
         { translationKey: "game-over" },
     ]);
 
     k.add([
-        k.text(`BEST SCORE: ${bestScore}`, {font: "mania", size: 64}),
+        k.text(T("best-score-text"), {font: "mania", size: 64}),
+        k.anchor("center"),
+        k.pos(k.center().x - 400, k.center().y - 275),
+        "localized",
+        { translationKey: "best-score-text" },
+    ]);
+
+    k.add([
+        k.text(`${bestScore}`, {font: "mania", size: 64}),
         k.anchor("center"),
         k.pos(k.center().x - 400, k.center().y - 200),
     ]);
 
     k.add([
-        k.text(`CURRENT SCORE: ${currentScore}`, {font: "mania", size: 64}),
+        k.text(T("current-score-text"), {font: "mania", size: 64}),
+        k.anchor("center"),
+        k.pos(k.center().x + 400, k.center().y - 275),
+        "localized",
+        { translationKey: "current-score-text" },
+    ]);
+
+    k.add([
+        k.text(`${currentScore}`, {font: "mania", size: 64}),
         k.anchor("center"),
         k.pos(k.center().x + 400, k.center().y - 200),
     ]);
@@ -49,6 +81,7 @@ export default function gameOver(){
         k.anchor("center"),
         k.outline(6, k.Color.fromArray([255, 255, 255])),
         k.pos(k.center().x - 400, k.center().y + 50),
+        k.z(2)
     ]);
 
     bestRankBox.add([
@@ -72,9 +105,12 @@ export default function gameOver(){
 
     k.wait(1, () => {
         k.add([
-            k.text("Press Space/Click/Touch to play again", {font: "mania", size: 64}),
+            k.text(T("space-to-play-again"), {font: "mania", size: 64}),
             k.anchor("center"),
             k.pos(k.center().x, k.center().y + 350),
+            k.z(1),
+            "localized",
+            { translationKey: "space-to-play-again" }
         ]);
 
         k.onButtonPress("jump", () => k.go("game", { isPlaying: true }))

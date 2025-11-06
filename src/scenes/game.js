@@ -1,10 +1,10 @@
 import k from "../kaplayCtx";
 import spawnSpark from "../entities/spark";
-import {spawnMotoBug} from "../entities/motobug";
-import spawnRing from "../entities/ring";
+import {spawnRobot} from "../entities/robot";
+import spawnCoin from "../entities/coin";
 
 export default function game(isPlaying){
-    k.setGravity(4000);
+    k.setGravity(3500);
 
     let stage
     if (!isPlaying) {
@@ -20,7 +20,7 @@ export default function game(isPlaying){
         ]),
         k.add([
             k.sprite("caria-bg", {anim: "flow"}),
-            k.pos(bgPieceWidth * 2, 0),
+            k.pos(bgPieceWidth, 0),
             k.scale(6),
         ]),
     ];
@@ -56,26 +56,21 @@ export default function game(isPlaying){
     spark.setEvents();
     spark.onCollide("enemy", (enemy) => {
         if (!spark.isGrounded() && spark.isAttacking){
-            k.play("destroy", {volume: 0.5});
-            k.play ("hyper-ring", {volume: 0.5});
+            k.play("destroy");
             k.destroy(enemy);
 
             //spark.play("jump");
             spark.jump();
 
             scoreMultiplier++;
-            score += 10* scoreMultiplier;
+            score += 10 * scoreMultiplier;
             scoreText.text = `SCORE: ${score}`;
-
-            if(scoreMultiplier === 1){
-                spark.ringCollectUI.text = "+10";
-            }
-            else{
-                spark.ringCollectUI.text = `x${scoreMultiplier}`;
-            }
-            
-            k.wait(1, () => spark.ringCollectUI.text = "");
-
+            if (scoreMultiplier === 1)
+                spark.ringCollectUI.text = `+${10 * scoreMultiplier}`;
+            if (scoreMultiplier > 1) spark.ringCollectUI.text = `x${scoreMultiplier}`;
+            k.wait(1, () => {
+                spark.ringCollectUI.text = "";
+            });
             return;
         };
 
@@ -96,11 +91,12 @@ export default function game(isPlaying){
     });
 
     const placeOnScreen = (type) => {
-        const waitTime = k.rand(0.5, 2.5);
+        const waitTimeEnemy = k.rand(0.5, 2.5);
+        const waitTimeCoin = k.rand(0.5, 1.5);
 
         switch(type){
-            case "motobug":
-                const motobug = spawnMotoBug(k.vec2(1950, 780));
+            case "robot":
+                const motobug = spawnRobot(k.vec2(1950, 750));
                 motobug.onUpdate(() => {
                     if (gameSpeed < 3000){
                         motobug.move(-(gameSpeed + 300), 0);
@@ -114,11 +110,11 @@ export default function game(isPlaying){
                     if (motobug.pos.x < 0) k.destroy(motobug);
                 });
 
-                k.wait(waitTime,() => placeOnScreen("motobug"));
+                k.wait(waitTimeEnemy,() => placeOnScreen("robot"));
                 break;
 
             case "ring":
-                const ring = spawnRing(k.vec2(1950, 780));
+                const ring = spawnCoin(k.vec2(1950, 780));
                 ring.onUpdate(() => {
                     ring.move(-(gameSpeed), 0);
                     return;
@@ -128,12 +124,12 @@ export default function game(isPlaying){
                     if (ring.pos.x < 0) k.destroy(ring);
                 });
                 
-                k.wait(waitTime,() => placeOnScreen("ring"));
+                k.wait(waitTimeCoin,() => placeOnScreen("ring"));
                 break;
         };
     };
 
-    placeOnScreen("motobug");
+    placeOnScreen("robot");
     placeOnScreen("ring");
 
     k.add([

@@ -3,42 +3,84 @@ import { translations } from "../kaplayCtx";
 
 export default function languageMenu(){
     k.add([
+        k.text(T("disclaimer"), {font: "mania", size: 30}),
+        k.pos(0, 20),
+        "localized",
+        { translationKey: "disclaimer" },
+    ]);
+    
+    k.add([
         k.text(T("game-title"), {font: "mania", size: 70}),
-        k.pos(k.center().x, 100),
+        k.pos(k.center().x, k.center().y - 200),
         k.anchor("center"),
         "localized", // Add the localized tag
         { translationKey: "game-title" } // Store the key
     ]);
 
     // Language buttons
-    const buttonEN = k.add([
-        k.text("ENGLISH", {font: "mania", size: 70}),
-        k.pos(100, 300),
+    const buttonENbox = k.add([
+        k.rect(400, 150, {radius: 4}),
+        k.color(0, 0, 0),
         k.area(),
+        k.anchor("center"),
+        k.outline(6, k.Color.fromArray([255, 255, 255])),
+        k.pos(k.center().x - 400, k.center().y),
+        k.z(-1),
     ]);
     
-    const buttonPT = k.add([
-        k.text("PORTUGUÊS", {font: "mania", size: 70}),
-        k.pos(400, 300),
+    buttonENbox.add([
+        k.text("ENGLISH", {font: "mania", size: 70}),
+        k.anchor("center"),
+        k.z(2),
+    ]);
+    
+    const buttonPTbox = k.add([
+        k.rect(400, 150, {radius: 4}),
+        k.color(0, 0, 0),
         k.area(),
+        k.anchor("center"),
+        k.outline(6, k.Color.fromArray([255, 255, 255])),
+        k.pos(k.center().x + 400, k.center().y),
+        k.z(-1),
     ]);
 
-    const buttonStart = k.add([
-        k.text(T("start-button"), {font: "mania", size: 70}),
-        k.pos(k.center().x, 500),
+    buttonPTbox.add([
+        k.text("PORTUGUÊS", {font: "mania", size: 70}),
         k.anchor("center"),
+    ]);
+
+    const buttonStartbox = k.add([
+        k.rect(300, 150, {radius: 4}),
+        k.color(0, 0, 0),
         k.area(),
+        k.anchor("center"),
+        k.outline(6, k.Color.fromArray([255, 255, 255])),
+        k.pos(k.center().x, k.center().y + 250),
+    ]);
+
+    k.add([
+        k.text(T("start-button"), {font: "mania", size: 70}),
+        k.anchor("center"),
+        k.pos(k.center().x, k.center().y + 250),
         "localized",
         { translationKey: "start-button" },
     ]);
 
-    buttonStart.onClick(() => k.go("main-menu"))
-    buttonEN.onClick(() => setLanguage("en"));
-    buttonPT.onClick(() => setLanguage("pt"));
+    k.add([
+        k.text(T("hint"), {font: "mania", size: 30}),
+        k.anchor("center"),
+        k.pos(k.center().x, k.center().y + 375),
+        "localized",
+        { translationKey: "hint" },
+    ])
+
+    buttonStartbox.onClick(() => k.go("main-menu"))
+    buttonENbox.onClick(() => setLanguage("en"));
+    buttonPTbox.onClick(() => setLanguage("pt"));
 
 };
 
-let currentLanguage = "en"; // Default language
+let currentLanguage = "pt"; // Default language
 
 export function T(key) {
     // T is a shorthand for Translate

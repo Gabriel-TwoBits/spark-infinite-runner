@@ -9,10 +9,10 @@ export default function spawnSpark(pos){
     const spark = k.add([
         k.sprite("spark", {anim: "run"}),
         k.scale(4.2),
-        k.area({ shape: new k.Rect(k.vec2(-5, 0), 40, 40) }),
+        k.area({ shape: new k.Rect(k.vec2(-5, 0), 35, 40) }),
         k.anchor("center"),
         k.pos(pos),
-        k.body({jumpForce: 2000}),
+        k.body({jumpForce: 1700}),
         "player",
         {
             isAttacking: false,
@@ -26,8 +26,10 @@ export default function spawnSpark(pos){
                         k.play("jump", {volume: 0.5});
                     }else{
                         this.isAttacking = true;
-                        k.wait(0.5, () => this.isAttacking = false);
+                        this.vel.y = 1500
+                        k.wait(0.3, () => this.isAttacking = false);
                         this.use(k.sprite("spark_attack"));
+                        k.play("air-slash");
                         this.play("attack");
                     };
                 });
@@ -35,9 +37,11 @@ export default function spawnSpark(pos){
             setEvents(){
                 this.onGround(() => {
                     if(gameSpeed < 1500){
+                        this.isAttacking = false;
                         this.use(k.sprite("spark_walk"));
                         this.play("walk");
                     }else{
+                        this.isAttacking = false;
                         this.use(k.sprite("spark"));
                         this.play("run");
                     }
@@ -48,7 +52,7 @@ export default function spawnSpark(pos){
 
     spark.ringCollectUI = spark.add([
         k.text("", {font: "mania", size:24}),
-        k.color(255, 185, 100),
+        k.color("FF8000"),
         k.anchor("center"),
         k.pos(30, -10),
     ]);

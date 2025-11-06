@@ -19,8 +19,8 @@ const k = kaplay({
 
 export const translations = {
     "game-title": {
-        en: "SELECT YOUR LANGUAGE",
-        pt: "SELECIONE SEU IDIOMA",
+        en: "PLEASE, SELECT YOUR LANGUAGE",
+        pt: "POR GENTILEZA, SELECIONE SEU IDIOMA",
     },
     "game-over": {
       en: "GAME OVER",
@@ -31,9 +31,29 @@ export const translations = {
       pt: "COMEÇAR",
     },
     "space-to-start":{
-      en: "Press space/Click/Mouse to start",
+      en: "Press Space/Click/Mouse to start",
       pt: "Pressione Espaço/Clique/Mouse para começar"
     },
+    "space-to-play-again":{
+      en: "Press Space/Click/Mouse to play again",
+      pt: "Pressione Espaço/Clique/Mouse para jogar novamente",
+    },
+    "best-score-text":{
+      en: "BEST SCORE:",
+      pt: "MELHOR PONTUAÇÃO:",
+    },
+    "current-score-text":{
+      en: "CURRENT SCORE:",
+      pt: "PONTUAÇÃO ATUAL:",
+    },
+    "hint":{
+      en: "Hint: Try jumping while in the air!",
+      pt: "Dica: Tente pular enquanto está no ar!",
+    },
+    "disclaimer": {
+      en: "The rights to this character belong to Feperd Games.\nThis is a fangame made with assets from the first game in the series.\nA special thanks to the users from The Spriters Resource.",
+      pt: "Os direitos deste personagem pertencem à Feperd Games.\nEsse é um fangame feito com os assets do primeiro jogo da franquia.\nUm agradecimento especial aos usuário do The Spriters Resource.",
+    }
     // Add all other game texts here
 };
 
