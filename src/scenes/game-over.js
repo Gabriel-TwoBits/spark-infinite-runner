@@ -1,5 +1,5 @@
 import k from "../kaplayCtx";
-import { T } from "./language-menu.js"
+import { T } from "./language-menu.js";
 
 export default function gameOver(){
     let bestScore = k.getData("best-score");

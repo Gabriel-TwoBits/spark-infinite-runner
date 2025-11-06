@@ -2,6 +2,7 @@ import k from "../kaplayCtx";
 import spawnSpark from "../entities/spark";
 import {spawnRobot} from "../entities/robot";
 import spawnCoin from "../entities/coin";
+import { T } from "./language-menu.js";
 
 export default function game(isPlaying){
     k.setGravity(3500);
@@ -47,8 +48,15 @@ export default function game(isPlaying){
     let scoreMultiplier = 0;
 
     const scoreText = k.add([
-        k.text("SCORE: 0", {font: "mania", size: 72}),
+        k.text(T("score"), {font: "mania", size: 72}),
         k.pos(20, 20),
+        "localized",
+        { translationKey: "score" },
+    ])
+
+    const scorePoints = k.add([
+        k.text("0", {font: "mania", size: 72}),
+        k.pos(scoreText.width + 10, 20),
     ]);
 
     const spark = spawnSpark(k.vec2(200, 800));
@@ -64,7 +72,7 @@ export default function game(isPlaying){
 
             scoreMultiplier++;
             score += 10 * scoreMultiplier;
-            scoreText.text = `SCORE: ${score}`;
+            scorePoints.text = `${score}`;
             if (scoreMultiplier === 1)
                 spark.ringCollectUI.text = `+${10 * scoreMultiplier}`;
             if (scoreMultiplier > 1) spark.ringCollectUI.text = `x${scoreMultiplier}`;
@@ -83,7 +91,7 @@ export default function game(isPlaying){
         k.destroy(ring);
 
         score++;
-        scoreText.text = `SCORE: ${score}`;
+        scorePoints.text = `${score}`;
 
         spark.ringCollectUI.text = "+1";
         k.wait(1, () => spark.ringCollectUI.text = "");
@@ -135,7 +143,7 @@ export default function game(isPlaying){
     k.add([
         k.rect(1920,300),
         k.opacity(0),
-        k.pos(0, 835),
+        k.pos(0, 830),
         k.area(),
         k.body({isStatic: true})
     ]);

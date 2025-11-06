@@ -51,9 +51,13 @@ export const translations = {
       pt: "Dica: Tente pular enquanto está no ar!",
     },
     "disclaimer": {
-      en: "The rights to this character belong to Feperd Games.\nThis is a fangame made with assets from the first game in the series.\nA special thanks to the users from The Spriters Resource.",
-      pt: "Os direitos deste personagem pertencem à Feperd Games.\nEsse é um fangame feito com os assets do primeiro jogo da franquia.\nUm agradecimento especial aos usuário do The Spriters Resource.",
-    }
+      en: "The rights to this character belong to Feperd Games.\nThis is a fangame made with assets from the first game in the series.\nA special thanks to the users from The Spriters Resource\nfor the Spark sprites and Atomic Realm for the cool platform asset.",
+      pt: "Os direitos deste personagem pertencem à Feperd Games.\nEsse é um fangame feito com os assets do primeiro jogo da franquia.\nUm agradecimento especial aos usuário do The Spriters Resource\npelos sprites do Spark e o Atomic Realm pelo asset de plataforma daora.",
+    },
+    "score": {
+      en: "SCORE: ",
+      pt: "PONTUAÇÃO: ",
+    },
     // Add all other game texts here
 };
 

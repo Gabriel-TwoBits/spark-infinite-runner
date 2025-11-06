@@ -5,7 +5,7 @@ import gameOver from "./scenes/game-over.js";
 import languageMenu from "./scenes/language-menu.js";
 
 k.loadSprite("boss-bg", "graphics/boss-bg.png")
-k.loadSprite("platforms", "graphics/platforms.png");
+k.loadSprite("platforms", "graphics/platforms-sheet.png");
 k.loadSprite("spark-art", "graphics/fark_art.png");
 
 k.loadSprite("spark", "graphics/spark_running_sheet.png", {
@@ -18,7 +18,7 @@ k.loadSprite("spark", "graphics/spark_running_sheet.png", {
   },
 });
 
-k.loadSprite("spark_walk", "graphics/spark_walk.png", {
+k.loadSprite("spark_walk", "graphics/spark_walk-sheet.png", {
   sliceX: 12,
   anims: {
     walk:{
