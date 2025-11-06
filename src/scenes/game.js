@@ -9,7 +9,7 @@ export default function game(isPlaying){
 
     let stage
     if (!isPlaying) {
-        stage = k.play("stage", {volume: 0.2, loop: true});
+        stage = k.play("stage", {volume: 0.4, loop: true});
     };
 
     const bgPieceWidth = 1920;
