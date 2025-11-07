@@ -14,7 +14,7 @@ const k = kaplay({
     },
   },
   debugKey: "z",
-  debug: true,
+  debug: false,
 });
 
 export const translations = {
