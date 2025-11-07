@@ -1,1 +1,1 @@
-# js-game
+# Spark the Infinite Runner Jester

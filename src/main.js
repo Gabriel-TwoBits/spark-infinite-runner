@@ -53,9 +53,9 @@ k.loadSprite("caria-bg", "graphics/caria-bg.png", {
       from: 0, to: 3, loop: true, speed: 1, pingpong: true
     }
   }
-})
+});
 
-k.loadSprite("ring", "graphics/start.png", {
+k.loadSprite("ring", "graphics/star.png", {
   sliceX: 5,
   sliceY: 1,
   anims: {
@@ -65,12 +65,32 @@ k.loadSprite("ring", "graphics/start.png", {
   },
 });
 
-k.loadSprite("motobug", "graphics/enemy_animation.png", {
+k.loadSprite("robot", "graphics/enemy_animation.png", {
   sliceX: 7,
   sliceY: 1,
   anims:{
     run: {
       from: 0, to: 6, loop: true, speed: 15, pingpong: true
+    },
+  },
+});
+
+k.loadSprite("explosion", "graphics/explosion-sheet.png", {
+  sliceX: 11,
+  sliceY: 1,
+  anims: {
+    explode: {
+      from: 0, to: 6, loop: false, speed: 50
+    },
+  },
+});
+
+k.loadSprite("coin-collect", "graphics/coin_collect.png", {
+  sliceX: 8,
+  sliceY: 1,
+  anims: {
+    collect: {
+      from: 0, to: 7, loop: false, speed: 30
     },
   },
 });

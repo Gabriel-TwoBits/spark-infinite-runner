@@ -23,7 +23,7 @@ export default function spawnSpark(pos){
                         this.use(k.sprite("spark_jump"));
                         this.play("jump");
                         this.jump();
-                        k.play("jump", {volume: 0.5});
+                        k.play("jump");
                     }else{
                         this.isAttacking = true;
                         this.vel.y = 1500
@@ -44,8 +44,8 @@ export default function spawnSpark(pos){
                         this.isAttacking = false;
                         this.use(k.sprite("spark"));
                         this.play("run");
-                    }
-                })
+                    };
+                });
             },
         },
     ]);

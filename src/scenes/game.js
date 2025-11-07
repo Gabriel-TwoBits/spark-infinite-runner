@@ -65,7 +65,10 @@ export default function game(isPlaying){
     spark.onCollide("enemy", (enemy) => {
         if (!spark.isGrounded() && spark.isAttacking){
             k.play("destroy");
-            k.destroy(enemy);
+            enemy.scaleTo(3);
+            enemy.use(k.sprite("explosion"));
+            enemy.play("explode");
+            k.wait(1, () => k.destroy(enemy));
 
             //spark.play("jump");
             spark.jump();
@@ -88,7 +91,10 @@ export default function game(isPlaying){
     });
     spark.onCollide("ring", (ring) => {
         k.play("ring", {volume: 0.5});
-        k.destroy(ring);
+        ring.use(k.sprite("coin-collect"));
+        ring.scaleTo(6);
+        ring.play("collect");
+        k.wait(1, () => k.destroy(ring));
 
         score++;
         scorePoints.text = `${score}`;
