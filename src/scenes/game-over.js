@@ -8,8 +8,8 @@ export default function gameOver(){
     const rankGrades = ["RANK F", "RANK E", "RANK D", "RANK C", "RANK B", "RANK A", "RANK S"];
     const rankValues = [50, 80, 100, 200, 300, 400, 500];
 
-    let currentRank = "F";
-    let bestRank = "F";
+    let currentRank = "RANK F";
+    let bestRank = "RANK F";
 
     for(let i = 0; i < rankValues.length; i++){
         if(rankValues[i] < currentScore) currentRank = rankGrades[i];
