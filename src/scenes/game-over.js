@@ -99,7 +99,7 @@ export default function gameOver(){
     ]);
 
     bestScoreBox.add([
-        k.text(bestRank, {font: "mania", size: 100}),
+        k.text(currentRank, {font: "mania", size: 100}),
         k.anchor("center"),
     ]);
 
